@@ -1,7 +1,7 @@
 import requests
 
 
-BASE_URI = 'https://swdestinydb.com/api/public'
+BASE_URI = 'http://swdestinydb.com/api/public'
 
 class SWDBResource(object):
     """
