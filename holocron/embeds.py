@@ -8,7 +8,7 @@ from holocron.cached import (
 )
 
 
-CARD_VIEW_TEMPLATE = 'https://swdestinydb.com/card/{code}'
+CARD_VIEW_TEMPLATE = 'http://swdestinydb.com/card/{code}'
 
 
 class CardEmbed(object):
