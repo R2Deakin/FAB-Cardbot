@@ -8,38 +8,38 @@ from fuzzywuzzy import process, fuzz
 from discord.ext import commands
 from discord import Embed
 
-from beanstalk.embeds import CardImage, CardText
-from beanstalk import cached
-from beanstalk.cached import CARDS
+from holocron.embeds import CardImage, CardText
+from holocron import cached
+from holocron.cached import CARDS
 
-TOKEN = os.environ.get('BEANSTALK_TOKEN')
+TOKEN = os.environ.get('HOLOCRON_TOKEN')
 QUERY_PATTERN = re.compile('\[\[([^\]]*)\]\]')
 
-bot = commands.Bot(command_prefix='!', description='Netrunner bot')
+bot = commands.Bot(command_prefix='!', description='SW:Destiny bot')
 
 last_refresh = None
 
 
 @bot.group(pass_context=True)
-async def beanstalk(ctx):
+async def holocron(ctx):
     """
-    Creates a command group. !beanstalk <command> is the usage pattern
-    for all beanstalk commands.
+    Creates a command group. !holocron <command> is the usage pattern
+    for all holocron commands.
     """
     pass
 
 
-@beanstalk.command()
+@holocron.command()
 async def help(*_):
     await bot.say(
         '```Usage: \n'
         '[[card]] - Fetch card embed.\n'
         '[[!card]] - Fetch card image.\n'
-        '!beanstalk refresh - Refresh card cache.```'
+        '!holocron refresh - Refresh card cache.```'
     )
 
 
-@beanstalk.command()
+@holocron.command()
 async def refresh(*_):
     """
     Refreshes the bots local cache of the card pool. Useful when
@@ -52,7 +52,7 @@ async def refresh(*_):
     if not time_since or time_since > 300:
         cached.refresh()
         last_refresh = time.time()
-        from beanstalk.cached import CARDS
+        from holocron.cached import CARDS
         await bot.say('Cache refreshed.')
     else:
         await bot.say(f'Last refresh was only {time_since} seconds ago. Skipping.')
@@ -72,7 +72,7 @@ def exact_match(query, cards):
 
     We do this because the fuzzy searcher sometimes mis-scores these exact matches
     and hands back the wrong cards. This ensures that every card is fetchable via
-    Beanstalk by using its exact name.
+    holocron by using its exact name.
     """
     card = cards.get(query)
     if not card:
@@ -87,13 +87,13 @@ def fuzzy_match(query, cards):
     The fuzzy searching library we use--`fuzzywuzzy`--scores its matches from 1
     to 100. Empirically, matches with scores less than 50 rarely look anything
     like the given query. So, we always use the top match and discard it if its
-    score is less than 50 to prevent seemingly random responses from Beanstalk.
+    score is less than 50 to prevent seemingly random responses from holocron.
     """
     # Fuzzy match over the card pool.
     results = process.extract(query, cards.keys(), limit=1, scorer=fuzz.token_set_ratio)
     if not results:
         return None
-    # If score is less than 50, ignore this result. Beanstalk will return no
+    # If score is less than 50, ignore this result. holocron will return no
     # embed in this case.
     card_name, score = results[0]
     if score < 50:
@@ -116,7 +116,7 @@ async def on_message(message):
     prefixed with `!` or not.
 
     After all this is done, we manually call `bot.process_commands` to give our
-    `!beanstalk help` and `!beanstalk refresh` commands a chance to fire, as
+    `!holocron help` and `!holocron refresh` commands a chance to fire, as
     implementing `on_message` intercepts typical command processing.
     """
 
@@ -137,7 +137,7 @@ async def on_message(message):
             embed = CardText
 
         if not CARDS:
-            await bot.send_message(message.channel, f'My card pool is empty. https://netrunnerdb.com might be down.')
+            await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
         for search in (exact_match, fuzzy_match):
             card = search(query, CARDS)

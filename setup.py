@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='beanstalk',
+    name='holocron',
     version='0.0.1',
-    description='Netrunner Discord bot',
-    author='Doug Black',
-    author_email='doug@dougblack.io',
+    description='SW:Destiby Discord bot',
+    author='Aaron Chapman',
+    author_email='aaronchpmn@gmail.com',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[

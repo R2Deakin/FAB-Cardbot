@@ -1,11 +1,11 @@
 import requests
 
 
-BASE_URI = 'https://netrunnerdb.com/api/2.0/public'
+BASE_URI = 'https://swdestinydb.com/api/public'
 
-class NRDBResource(object):
+class SWDBResource(object):
     """
-    This object represents a resource in the NetrunnerDB API.
+    This object represents a resource in the SWDestinyDB API.
     """
     location = None
 
@@ -24,17 +24,11 @@ class NRDBResource(object):
         return requests.get(uri, params=params).json()
 
 
-class Cards(NRDBResource):
+class Cards(SWDBResource):
     location = '/cards'
 
-class Factions(NRDBResource):
-    location = '/factions'
+class Formats(SWDBResource):
+    location = '/formats'
 
-class Packs(NRDBResource):
-    location = '/packs'
-
-class MWLs(NRDBResource):
-    location = '/mwl'
-
-class Cycles(NRDBResource):
-    location = '/cycles'
+class Sets(SWDBResource):
+    location = '/sets'

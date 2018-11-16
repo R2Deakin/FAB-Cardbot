@@ -1,1 +1,1 @@
-worker: python3 beanstalk/bot.py
+worker: python3 holocron/bot.py
