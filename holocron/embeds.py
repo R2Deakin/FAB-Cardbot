@@ -83,12 +83,12 @@ class CardText(CardEmbed):
         type_code = self.type_code
 
         lines = {
-            'character': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}, 'Health:' {health}, 'Points:' {points}],
-            'upgrade': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}, 'Cost:' {cost}],
-            'support': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}, 'Cost:' {cost}],
-            'event': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}, 'Cost:' {cost}],
-            'battlefield': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}],
-            'plot': ['Faction:' {faction_name}, 'Affiliation:' {affiliation_name}, 'Points:' {points}],
+            'character': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Health: {health}', 'Points: {points}'],
+            'upgrade': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
+            'support': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
+            'event': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
+            'battlefield': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}'],
+            'plot': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Points: {points}'],
         }
 
         parts.extend((' • ' + s).format(**self.card) for s in lines[type_code])
