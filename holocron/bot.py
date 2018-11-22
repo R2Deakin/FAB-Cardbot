@@ -137,7 +137,7 @@ async def on_message(message):
         else:
             embed = CardText
 
-        if message.author.id == '327308924472786965':
+        if 'Tier 1' in query
             query = 'Poe Dameron - More Than A Pilot'
 
         if not CARDS:
