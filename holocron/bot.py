@@ -124,6 +124,8 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
 
+    print(f'{message.author.id}')
+
 
     queries = set(re.findall(QUERY_PATTERN, message.content))
     for query in queries:
