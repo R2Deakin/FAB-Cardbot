@@ -124,6 +124,10 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
 
+    if message.author.id == 327308924472786965:
+        await bot.send_message(message.channel, f'Just remember, Poe is Tier 1')
+
+
     queries = set(re.findall(QUERY_PATTERN, message.content))
     for query in queries:
 
