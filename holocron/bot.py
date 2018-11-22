@@ -147,11 +147,12 @@ async def on_message(message):
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
                 break
 
-        if card:
-            await bot.send_message(message.channel, embed=embed.render())
-        elif message.author.id == 327308924472786965:
+        if message.author.id == 327308924472786965:
             print(f'Des messaged me')
             await bot.send_message(message.channel, f'Just remember, Poe is Tier 1')
+
+        if card:
+            await bot.send_message(message.channel, embed=embed.render())
         else:
             await bot.send_message(message.channel, f'No results for {query}')
 
