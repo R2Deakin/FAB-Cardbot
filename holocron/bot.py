@@ -148,7 +148,11 @@ async def on_message(message):
                 break
 
         if message.author.id == '327308924472786965':
-            card = cards.get('Poe Dameron - More Than A Pilot')
+            card = exact_match('Poe Dameron - More Than A Pilot', CARDS)
+            if card:
+                embed = embed(card)
+                print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
+                break
 
         if card:
             await bot.send_message(message.channel, embed=embed.render())
