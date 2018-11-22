@@ -146,7 +146,7 @@ async def on_message(message):
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
                 break
 
-        if embed:
+        if card:
             await bot.send_message(message.channel, embed=embed.render())
         else:
             await bot.send_message(message.channel, f'No results for {query}')
