@@ -124,8 +124,6 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
 
-    print(f'{message.author.id}')
-
 
     queries = set(re.findall(QUERY_PATTERN, message.content))
     for query in queries:
@@ -149,9 +147,8 @@ async def on_message(message):
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
                 break
 
-        if message.author.id == 327308924472786965:
-            print(f'Des messaged me')
-            await bot.send_message(message.channel, f'Just remember, Poe is Tier 1')
+        if message.author.id == '327308924472786965':
+            card = cards.get('Poe Dameron - More Than A Pilot')
 
         if card:
             await bot.send_message(message.channel, embed=embed.render())
