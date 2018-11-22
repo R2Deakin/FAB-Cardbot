@@ -20,9 +20,9 @@ def refresh():
     print('Rebuilding cache...')
 
     try:
-        formats_resp = Formats().all()['data']
-        card_resp = Cards().all()['data']
-        sets_resp = Sets().all()['data']
+        formats_resp = Formats().all()
+        card_resp = Cards().all()
+        sets_resp = Sets().all()
     except Exception as e:
         print('SWDestinyDB requests failed. Aborting cache refresh.')
         print(e)
