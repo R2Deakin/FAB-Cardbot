@@ -124,10 +124,6 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
 
-    if message.author.id == 327308924472786965:
-        print(f'Des messaged me')
-        await bot.send_message(message.channel, f'Just remember, Poe is Tier 1')
-
 
     queries = set(re.findall(QUERY_PATTERN, message.content))
     for query in queries:
@@ -153,6 +149,9 @@ async def on_message(message):
 
         if card:
             await bot.send_message(message.channel, embed=embed.render())
+        else if message.author.id == 327308924472786965:
+            print(f'Des messaged me')
+            await bot.send_message(message.channel, f'Just remember, Poe is Tier 1')
         else:
             await bot.send_message(message.channel, f'No results for {query}')
 
