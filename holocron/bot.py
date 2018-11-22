@@ -143,7 +143,7 @@ async def on_message(message):
             card = search(query, CARDS)
             if card:
                 embed = embed(card)
-                print(f'{message.channel.id}: `{query}` satisifed with `{card["name"]}` via {search.__name__}')
+                print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
                 break
 
         if embed:

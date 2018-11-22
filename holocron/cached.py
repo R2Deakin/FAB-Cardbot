@@ -28,7 +28,7 @@ def refresh():
         print(e)
         return
 
-    CARDS = {c['name']: c for c in card_resp}
+    CARDS = {c['label']: c for c in card_resp}
     FORMATS = {f['code']: f['name'] for f in formats_resp}
     SETS = {f['code']: f['name'] for f in sets_resp}
 
