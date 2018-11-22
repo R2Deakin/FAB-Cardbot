@@ -137,18 +137,14 @@ async def on_message(message):
         else:
             embed = CardText
 
+        if message.author.id == '327308924472786965':
+            query = 'Poe Dameron - More Than A Pilot'
+
         if not CARDS:
             await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
         for search in (exact_match, fuzzy_match):
             card = search(query, CARDS)
-            if card:
-                embed = embed(card)
-                print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
-                break
-
-        if message.author.id == '327308924472786965':
-            card = exact_match('Poe Dameron - More Than A Pilot', CARDS)
             if card:
                 embed = embed(card)
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
