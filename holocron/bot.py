@@ -137,7 +137,7 @@ async def on_message(message):
         else:
             embed = CardText
 
-        if query.find('Tier 1') != -1
+        if query.find('Tier 1') != -1:
             query = 'Poe Dameron - More Than A Pilot'
 
         if not CARDS:
