@@ -140,6 +140,9 @@ async def on_message(message):
         if query.find('Tier 1') != -1:
             query = 'Poe Dameron - More Than A Pilot'
 
+        if query.find('Tier 2') != -1:
+            query = 'Rex - Clone Captain'
+
         if not CARDS:
             await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
