@@ -143,11 +143,14 @@ async def on_message(message):
         if query.find('Tier 2') != -1:
             query = 'Rex - Clone Captain'
 
+        queryArray = query.split('-')
+
+
         if not CARDS:
             await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
         for search in (exact_match, fuzzy_match):
-            card = search(query, CARDS)
+            card = search(queryArray[0], CARDS)
             if card:
                 embed = embed(card)
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
