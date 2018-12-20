@@ -143,7 +143,7 @@ async def on_message(message):
         if query.find('Tier 2') != -1:
             query = 'Rex - Clone Captain'
 
-        queryArray = query.split('-')
+        queryArray = query.split('-');
 
 
         if not CARDS:
