@@ -90,6 +90,7 @@ def fuzzy_match(query, cards, setQuery = None):
     score is less than 50 to prevent seemingly random responses from holocron.
     """
     # Fuzzy match over the card pool.
+    theCard = None;
     results = process.extract(query, cards.keys(), limit=1, scorer=fuzz.token_set_ratio)
     if not results:
         return None
@@ -100,13 +101,15 @@ def fuzzy_match(query, cards, setQuery = None):
         setQuery = setQuery[1:]
         for result in results:
             card_name, score = result
+            print(cards[card_name]['set_code'])
             if setQuery == cards[card_name]['set_code']:
-                return cards[card_name]
+                if score > 50:
+                    theCard = cards[card_name]
     else:
         card_name, score = results[0]
-    if score < 50:
-        return None
-    return cards[card_name]
+        if score > 50:
+            theCard = cards[card_name];
+    return theCard
 
 
 @bot.event
