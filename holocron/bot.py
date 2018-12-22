@@ -99,10 +99,11 @@ def fuzzy_match(query, cards, setQuery = None):
 
     if setQuery is not None:
         setQuery = setQuery[1:]
+        print(setQuery)
         for result in results:
             card_name, score = result
-            print(cards[card_name]['set_code'])
             if setQuery == cards[card_name]['set_code']:
+                print(result)
                 if score > 50:
                     theCard = cards[card_name]
     else:
