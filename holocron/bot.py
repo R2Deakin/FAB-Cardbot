@@ -91,7 +91,7 @@ def fuzzy_match(query, cards, setQuery = None):
     """
     # Fuzzy match over the card pool.
     theCard = None;
-    results = process.extract(query, cards.keys(), limit=1, scorer=fuzz.token_set_ratio)
+    results = process.extract(query, cards.keys(), limit=5, scorer=fuzz.token_set_ratio)
     if not results:
         return None
     # If score is less than 50, ignore this result. holocron will return no
