@@ -100,7 +100,7 @@ def fuzzy_match(query, cards, setQuery = None):
         setQuery = setQuery[1:]
         for result in results:
             card_name, score = result
-            if setQuery == cards[card_name]:
+            if setQuery == cards[card_name]->'set_code':
                 return cards[card_name]
     else:
         card_name, score = results[0]
