@@ -66,7 +66,7 @@ async def on_ready():
     print(f'Logged in as {bot.user} with id {bot.user.id}.')
 
 
-def exact_match(query, cards):
+def exact_match(query, cards, setQuery = None):
     """
     Returns an embed if the query exactly matches a card name in the card set.
 
@@ -80,7 +80,7 @@ def exact_match(query, cards):
     return card
 
 
-def fuzzy_match(query, cards):
+def fuzzy_match(query, cards, setQuery = None):
     """
     Returns an embed if the query fuzzily matches a card name in the card set.
 
@@ -95,6 +95,11 @@ def fuzzy_match(query, cards):
         return None
     # If score is less than 50, ignore this result. holocron will return no
     # embed in this case.
+
+    if setQuery is not None:
+        setQuery = setQuery[1:]
+        for result in results:
+            print result
     card_name, score = results[0]
     if score < 50:
         return None
@@ -150,7 +155,10 @@ async def on_message(message):
             await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
         for search in (exact_match, fuzzy_match):
-            card = search(queryArray[0], CARDS)
+            if len(queryArray) > 1:
+                card = search(queryArray[0], CARDS, queryArray[1])
+            else:
+                card = search(queryArray[0], CARDS)
             if card:
                 embed = embed(card)
                 print(f'{message.channel.id}: `{query}` satisifed with `{card["label"]}` via {search.__name__}')
