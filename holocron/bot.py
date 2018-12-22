@@ -98,6 +98,7 @@ def fuzzy_match(query, cards, setQuery = None):
     # embed in this case.
 
     if setQuery is not None:
+        print('Set Query')
         setQuery = setQuery[1:]
         print(setQuery)
         for result in results:
