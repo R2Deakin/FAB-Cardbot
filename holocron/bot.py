@@ -158,7 +158,7 @@ async def on_message(message):
 
 
         if not CARDS:
-            await bot.send_message(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
+            await bot.send(message.channel, f'My card pool is empty. https://swdestinydb.com might be down.')
 
         for search in (exact_match, fuzzy_match):
             if len(queryArray) > 1:
@@ -171,9 +171,9 @@ async def on_message(message):
                 break
 
         if card:
-            await bot.send_message(message.channel, embed=embed.render())
+            await bot.send(message.channel, embed=embed.render())
         else:
-            await bot.send_message(message.channel, f'No results for {query}')
+            await bot.send(message.channel, f'No results for {query}')
 
     # Give other commands a chance to resolve.
     await bot.process_commands(message)
