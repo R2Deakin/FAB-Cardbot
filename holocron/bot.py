@@ -107,12 +107,14 @@ def fuzzy_match(query, cards, setQuery = None):
                 if score > 50 and score > highScore:
                     theCard = cards[card_name]
                     highScore = score
+                    print(f'{card_name}: `{score}`')
     else:
         for result in results:
             card_name, score = result
             if score > 50 and score > highScore:
                 theCard = cards[card_name]
                 highScore = score
+                print(f'{card_name}: `{score}`')
     return theCard
 
 
