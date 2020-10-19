@@ -92,10 +92,10 @@ def fuzzy_match(query, cards, setQuery = None):
     # Fuzzy match over the card pool.
     highScore = 0;
     theCard = None;
-    results = process.extract(query, cards.keys(), limit=5, scorer=fuzz.token_sort_ratio)
+    results = process.extract(query, cards.keys(), limit=5, scorer=fuzz.token_set_ratio)
     if not results:
         return None
-    # If score is less than 70, ignore this result. holocron will return no
+    # If score is less than 50, ignore this result. holocron will return no
     # embed in this case.
 
     if setQuery is not None:
@@ -104,12 +104,12 @@ def fuzzy_match(query, cards, setQuery = None):
             card_name, score = result
             if setQuery == cards[card_name]['set_code']:
                 print(result)
-                if score > 70 and score > highScore:
+                if score > 50 and score > highScore:
                     theCard = cards[card_name]
                     highScore = score
     else:
         card_name, score = results[0]
-        if score > 70 and score > highScore:
+        if score > 50 and score > highScore:
             theCard = cards[card_name]
             highScore = score
     return theCard
