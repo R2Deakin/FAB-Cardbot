@@ -98,7 +98,8 @@ class CardText(CardEmbed):
 
     def text_line(self):
         result = self.text if self.has('text') else '(no text)'
-        return re.sub("(<strong>)(.*?)(</strong>)", "**\g<2>**", result)
+        clean = re.compile('<.*?>')
+        return re.sub(clean, '', result)
 
     def footer_line(self):
         """

@@ -90,6 +90,7 @@ def fuzzy_match(query, cards, setQuery = None):
     score is less than 50 to prevent seemingly random responses from holocron.
     """
     # Fuzzy match over the card pool.
+    highScore = 0;
     theCard = None;
     results = process.extract(query, cards.keys(), limit=5, scorer=fuzz.token_set_ratio)
     if not results:
@@ -103,12 +104,14 @@ def fuzzy_match(query, cards, setQuery = None):
             card_name, score = result
             if setQuery == cards[card_name]['set_code']:
                 print(result)
-                if score > 50:
+                if score > 50 && score > highScore:
                     theCard = cards[card_name]
+                    highScore = score
     else:
         card_name, score = results[0]
-        if score > 50:
-            theCard = cards[card_name];
+        if score > 50 && score > highScore:
+            theCard = cards[card_name]
+            highScore = score
     return theCard
 
 
@@ -147,12 +150,6 @@ async def on_message(message):
             query = query[1:]
         else:
             embed = CardText
-
-        if query.find('Tier 1') != -1:
-            query = 'Poe Dameron - More Than A Pilot'
-
-        if query.find('Tier 2') != -1:
-            query = 'Rex - Clone Captain'
 
         queryArray = query.split('?');
 
