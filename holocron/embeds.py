@@ -85,6 +85,7 @@ class CardText(CardEmbed):
         lines = {
             'character': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Health: {health}', 'Points: {points}'],
             'upgrade': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
+            'downgrade': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
             'support': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
             'event': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}', 'Cost: {cost}'],
             'battlefield': ['Faction: {faction_name}', 'Affiliation: {affiliation_name}'],
