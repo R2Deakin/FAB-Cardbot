@@ -23,6 +23,10 @@ class CardEmbed(object):
     def __init__(self, card):
         self.card = card
 
+        if card['subtitle'] is None:
+            card['subtitle'] = ''
+            pass
+
         # This is a discord.py Embed object, and is the thing we
         # will be building.
         self.embed = Embed(
