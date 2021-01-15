@@ -25,7 +25,7 @@ class CardEmbed(object):
 
         if card['subtitle'] is None:
             card['subtitle'] = ''
-        else
+        else:
             card['subtitle'] = ' - '+ card['subtitle']
 
         # This is a discord.py Embed object, and is the thing we
