@@ -27,7 +27,7 @@ class CardEmbed(object):
         # will be building.
         self.embed = Embed(
             type='rich',
-            title=card['name'] + ' ' + card['subtitle'],
+            title=card['name'] + ' - ' + card['subtitle'],
             url=self.url(card),
         )
 
